@@ -10,7 +10,14 @@ def main():
 
 
 def getHtml(url):
-    r = requests.get(url)
+    try:
+        r = requests.get(url)
+    except requests.exceptions.InvalidSchema:
+        r = requests.get(
+            str(
+                'http://' + url
+            )
+        )
     findLinks(r.text)
 
 
@@ -18,8 +25,9 @@ def findLinks(html):
     soup = BeautifulSoup(html)
     links = []
     for link in soup.findAll('a', href=True):
-        if (link['href'][0] != '#' and link['href'][0] != ''):
+        if (link['href'][0] != '#' and link['href'][0] != '' and link['href'][0] != '/'):
             links.append(str(link['href']))
+            print '[*] found %s' % links[-1]
             getHtml(links[-1])
     return links
 
