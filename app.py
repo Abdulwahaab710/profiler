@@ -45,7 +45,12 @@ def findLinks(html):
                 links.append(str(link['href']))
                 print '[*] found %s' % links[-1]
                 getHtml(links[-1])
-    return {'links': links, 'emails': emails, 'facebook': facebook, 'githubs': githubs}
+    return {
+        'links': links,
+        'emails': emails,
+        'facebook': facebook,
+        'githubs': githubs
+    }
 
 if __name__ == '__main__':
     main()
