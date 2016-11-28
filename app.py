@@ -29,10 +29,13 @@ def findLinks(html):
     links = []
     for link in soup.findAll('a', href=True):
         if (link['href'][0] != '#' and link['href'][0] != ''):
-            links.append(str(link['href']))
-            print '[*] found %s' % links[-1]
-            # getHtml(links[-1])
-    return links
+            if('@' in link['href'] ):
+                print '[*] found an email %s' % link['href']
+            else:
+                links.append(str(link['href']))
+                print '[*] found %s' % links[-1]
+                getHtml(links[-1])
+        return links
 
 if __name__ == '__main__':
     main()
