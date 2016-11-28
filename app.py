@@ -31,11 +31,15 @@ def findLinks(html):
         if (link['href'][0] != '#' and link['href'][0] != ''):
             if('@' in link['href'] ):
                 print '[*] found an email %s' % link['href']
+            elif('github' in link['href']):
+                print '[*] found a github %s' % link['href']
+            elif('facebook' in link['href']):
+                print '[*] found a facebook %s' % link['href']
             else:
                 links.append(str(link['href']))
                 print '[*] found %s' % links[-1]
                 getHtml(links[-1])
-        return links
+    return links
 
 if __name__ == '__main__':
     main()
