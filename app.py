@@ -27,19 +27,25 @@ def getHtml(url):
 def findLinks(html):
     soup = BeautifulSoup(html)
     links = []
+    emails = []
+    githubs = []
+    facebook = []
     for link in soup.findAll('a', href=True):
         if (link['href'][0] != '#' and link['href'][0] != ''):
-            if('@' in link['href'] ):
+            if('@' in link['href']):
                 print '[*] found an email %s' % link['href']
+                emails.append(link['href'])
             elif('github' in link['href']):
                 print '[*] found a github %s' % link['href']
+                githubs.append(link['href'])
             elif('facebook' in link['href']):
                 print '[*] found a facebook %s' % link['href']
+                facebook.append(link['href'])
             else:
                 links.append(str(link['href']))
                 print '[*] found %s' % links[-1]
                 getHtml(links[-1])
-    return links
+    return {'links': links, 'emails': emails, 'facebook': facebook, 'githubs': githubs}
 
 if __name__ == '__main__':
     main()
