@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 def main():
     # url = raw_input('Enter a URL to Profile')
-    url = 'http://abdulwahaab.ca'
+    url = 'abdulwahaab.ca'
     r = requests.get(url)
     print findLinks(r.text)
 
