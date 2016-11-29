@@ -5,7 +5,14 @@ from BeautifulSoup import BeautifulSoup
 def main():
     # url = raw_input('Enter a URL to Profile')
     url = 'abdulwahaab.ca'
-    r = requests.get(url)
+    try:
+        r = requests.get(url)
+    except requests.exceptions.MissingSchema:
+        r = requests.get(
+            str(
+                'http://' + url
+            )
+        )
     print findLinks(r.text)
 
 
