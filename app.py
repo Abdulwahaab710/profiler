@@ -1,5 +1,6 @@
 import requests
 from BeautifulSoup import BeautifulSoup
+import re
 
 
 def main():
@@ -42,7 +43,7 @@ def findLinks(html):
             if (link['href'][0] != '#' and link['href'][0] != ''):
                 if('@' in link['href'] and 'twitter' not in link['href']):
                     print '[*] found an email %s' % link['href']
-                    emails.append(link['href'])
+                    emails.append(re.search("(?<=:)([a-zA-Z]|\d|@|\.)+", link['href']).group())
                 elif('github' in link['href']):
                     print '[*] found a github %s' % link['href']
                     githubs.append(link['href'])
