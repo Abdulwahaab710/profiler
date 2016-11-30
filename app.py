@@ -37,6 +37,7 @@ def findLinks(html):
     links = []
     emails = []
     githubs = []
+    twitter = []
     facebook = []
     links = soup.findAll('a', href=True)
     for index, link in enumerate(links):
@@ -56,6 +57,9 @@ def findLinks(html):
                 elif('facebook' in link['href']):
                     print '[*] found a facebook %s' % link['href']
                     facebook.append(link['href'])
+                elif('twitter' in link['href']):
+                    print '[*] found a twitter %s' % link['href']
+                    twitter.append(link['href'])
                 else:
                     print link['href']
                     links.append(str(link['href']))
