@@ -57,6 +57,7 @@ def findLinks(html):
                     print '[*] found a facebook %s' % link['href']
                     facebook.append(link['href'])
                 else:
+                    print link['href']
                     links.append(str(link['href']))
                     print '[*] found %s' % links[-1]
                     getHtml(links[-1])
