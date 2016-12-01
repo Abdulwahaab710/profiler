@@ -1,11 +1,13 @@
 import requests
 from BeautifulSoup import BeautifulSoup
 import re
+import sys
 
 
-def main():
+def main(url=None):
     # url = raw_input('Enter a URL to Profile')
-    url = 'abdulwahaab.ca'
+    url = sys.argv[1] if len(sys.argv) > 1 else raw_input('Enter a URL>> ')
+    # url = 'abdulwahaab.ca'
     try:
         r = requests.get(url)
     except requests.exceptions.MissingSchema:
