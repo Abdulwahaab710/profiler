@@ -5,9 +5,7 @@ import sys
 
 
 def main(url=None):
-    # url = raw_input('Enter a URL to Profile')
     url = sys.argv[1] if len(sys.argv) > 1 else raw_input('Enter a URL>> ')
-    # url = 'abdulwahaab.ca'
     getHtml(url)
 
 
@@ -24,6 +22,13 @@ def getHtml(url):
         findLinks(r.text)
     except requests.exceptions.MissingSchema:
         print '[*] Invalid url %s' % url
+        r = requests.get(
+            str(
+                'http://' + url
+            )
+        )
+        findLinks(r.text)
+
     except requests.exceptions.ConnectionError:
         print '[*] %s is unreachable' % url
 
