@@ -14,6 +14,8 @@ def getHtml(url):
         r = requests.get(url)
         findLinks(r.text)
     except requests.exceptions.InvalidSchema:
+        if (url[0:2] == '//'):
+            url = url[2:len(url)]
         r = requests.get(
             str(
                 'http://' + url
