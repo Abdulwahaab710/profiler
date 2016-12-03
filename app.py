@@ -14,8 +14,6 @@ def getHtml(url):
         r = requests.get(url)
         findLinks(r.text)
     except requests.exceptions.InvalidSchema:
-        if (url[0:2] == '//'):
-            url = url[2:len(url)]
         r = requests.get(
             str(
                 'http://' + url
@@ -24,6 +22,8 @@ def getHtml(url):
         findLinks(r.text)
     except requests.exceptions.MissingSchema:
         print '[*] Invalid url %s' % url
+        if (url[0:2] == '//'):
+            url = url[2:len(url)]
         r = requests.get(
             str(
                 'http://' + url
@@ -33,6 +33,16 @@ def getHtml(url):
 
     except requests.exceptions.ConnectionError:
         print '[*] %s is unreachable' % url
+    except requests.exceptions.InvalidURL:
+        if (url[0:2] == '//'):
+            url = url[2:len(url)]
+        print '[*] Invalid url %s' % url
+        r = requests.get(
+            str(
+                'http://' + url
+            )
+        )
+        findLinks(r.text)
 
 
 def findLinks(html):
