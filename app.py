@@ -74,7 +74,7 @@ def findLinks(html):
                     print '[*] found a twitter %s' % link['href']
                     twitter.append(link['href'])
                 else:
-                    print link['href']
+                    # print link['href']
                     links.append(str(link['href']))
                     print '[*] found %s' % links[-1]
                     getHtml(links[-1])
